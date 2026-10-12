@@ -1,0 +1,73 @@
+// Importaciones del XML que se encontraban en la guia.html
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="ni.uam.edu.test.ProcesadorController" spacing="16" style="-fx-background-color: #f4f7fb;">
+    <padding><Insets top="24" right="28" bottom="24" left="28"/></padding>
+    <Label text="Monitor de procesamiento" style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #17365d;"/>
+    <Label text="Práctica guiada · Programación concurrente con Thread y Runnable" wrapText="true" style="-fx-font-size: 13px; -fx-text-fill: #52647a;"/>
+    <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Procesador de registros">
+                <content>
+                    <VBox spacing="18" style="-fx-background-color: white; -fx-background-radius: 10;">
+                        <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+                        <Label text="Proceso individual" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                        <Label text="Se simula el procesamiento de 100 registros, aproximadamente 10 segundos." wrapText="true"/>
+                        <Label fx:id="lblEstado" text="Esperando inicio"/>
+                        <ProgressBar fx:id="barraProgreso" progress="0" maxWidth="Infinity" prefHeight="22"/>
+                        <Label fx:id="lblPorcentaje" text="0%" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                        <Separator/>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <Button fx:id="btnIniciar" text="Iniciar" onAction="#iniciarProceso" style="-fx-background-color: #1769aa; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                            <Button fx:id="btnDetener" text="Detener" onAction="#detenerProceso"/>
+                            <Button fx:id="btnReiniciar" text="Reiniciar" onAction="#reiniciarProceso"/>
+                        </HBox>
+                    </VBox>
+                </content>
+            </Tab>
+            <Tab text="Reto final: clientes y productos">
+                <content>
+                    <VBox spacing="18" style="-fx-background-color: white; -fx-background-radius: 10;">
+                        <padding><Insets top="22" right="24" bottom="22" left="24"/></padding>
+                        <Label text="Procesos concurrentes" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                        <Label text="Cada proceso se ejecuta en su propio hilo y puede detenerse de forma independiente." wrapText="true"/>
+                        <VBox spacing="8">
+                            <Label text="Clientes · 100 registros" style="-fx-font-weight: bold;"/>
+                            <Label fx:id="lblEstadoClientes" text="Esperando inicio"/>
+                            <ProgressBar fx:id="barraClientes" progress="0" maxWidth="Infinity" prefHeight="20"/>
+                            <Label fx:id="lblPorcentajeClientes" text="0%"/>
+                            <HBox spacing="10">
+                                <Button fx:id="btnIniciarClientes" text="Iniciar clientes" onAction="#iniciarClientes" style="-fx-background-color: #1769aa; -fx-text-fill: white;"/>
+                                <Button fx:id="btnDetenerClientes" text="Detener clientes" onAction="#detenerClientes"/>
+                            </HBox>
+                        </VBox>
+                        <Separator/>
+                        <VBox spacing="8">
+                            <Label text="Productos · 50 registros" style="-fx-font-weight: bold;"/>
+                            <Label fx:id="lblEstadoProductos" text="Esperando inicio"/>
+                            <ProgressBar fx:id="barraProductos" progress="0" maxWidth="Infinity" prefHeight="20"/>
+                            <Label fx:id="lblPorcentajeProductos" text="0%"/>
+                            <HBox spacing="10">
+                                <Button fx:id="btnIniciarProductos" text="Iniciar productos" onAction="#iniciarProductos" style="-fx-background-color: #238636; -fx-text-fill: white;"/>
+                                <Button fx:id="btnDetenerProductos" text="Detener productos" onAction="#detenerProductos"/>
+                            </HBox>
+                        </VBox>
+                        <Button fx:id="btnReiniciarReto" text="Reiniciar ambos procesos" onAction="#reiniciarReto"/>
+                    </VBox>
+                </content>
+            </Tab>
+        </tabs>
+    </TabPane>
+    <Label text="Las actualizaciones visuales se realizan mediante Platform.runLater()." wrapText="true" style="-fx-font-size: 11px; -fx-text-fill: #667085;"/>
+</VBox>
